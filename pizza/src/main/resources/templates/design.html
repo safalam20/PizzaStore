@@ -1,0 +1,95 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Pizza Store</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-7 mt-3">
+            <h3>Create Your Pizza</h3>
+            <form method="post" th:action="@{/save-design}" th:object="${design}">
+                <div class="form-group">
+                    <label for="dough">Dough:</label>
+                    <select class="form-control" id="dough" th:field="*{dough}">
+                        <option th:each="dough : ${T(pizza.Pizza.Dough).values()}"
+                                th:text="${dough}"
+                                th:value="${dough}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="baseSauce">Base Sauce:</label>
+                    <select class="form-control" id="baseSauce" th:field="*{baseSauce}">
+                        <option th:each="baseSauce : ${T(pizza.Pizza.BaseSauce).values()}"
+                                th:text="${baseSauce}"
+                                th:value="${baseSauce}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cheese">Cheese:</label>
+                    <select class="form-control" id="cheese" th:field="*{cheese}">
+                        <option th:each="cheese : ${T(pizza.Pizza.Cheese).values()}"
+                                th:text="${cheese}"
+                                th:value="${cheese}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <h4>Veggies</h4>
+                        <hr>
+                        <div class="checkbox" th:each="v : ${veggie}">
+                            <label><input name="toppings" th:value="${v.id}" type="checkbox">
+                                <span th:text="${v.name}"></span></label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <h4>Meat</h4>
+                        <hr>
+                        <div class="checkbox" th:each="v : ${meat}">
+                            <label><input name="toppings" th:value="${v.id}" type="checkbox">
+                                <span th:text="${v.name}"></span></label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <h4>Cheese</h4>
+                        <hr>
+                        <div class="checkbox" th:each="v : ${cheese}">
+                            <label><input name="toppings" th:value="${v.id}" type="checkbox">
+                                <span th:text="${v.name}"></span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ins">Extra Instructions:</label>
+                    <textarea class="form-control" id="ins" rows="2" th:field="*{instructions}"></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+
+            </form>
+        </div>
+        <div class="col-4">
+            <img th:src="@{/images/tiefkuhl.png}"/>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container order-form">
+        <div class="row">
+            <div class="col-5 mt-4">
+                <form th:action="@{/save-form}" method="post" th:object="${bestellung}">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <div class="row">
+                            <input type="text" class="form-control col-8" id="firstName" th:field="*{firstName}">
+                            <p class="errorM" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <div class="row">
+                            <input type="text" class="form-control col-8" id="lastName" th:field="*{lastName}">
+                            <p class="errorM" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hausNummer">Haus Nummer:</label>
+                        <div class="row">
+                            <input type="text" class="form-control col-8" id="hausNummer" th:field="*{hausNummer}">
+                            <p class="errorM" th:if="${#fields.hasErrors('hausNummer')}" th:errors="*{hausNummer}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="streetName">Street Name:</label>
+                        <div class="row">
+                            <input type="text" class="form-control col-8" id="streetName" th:field="*{streetName}">
+                            <p class="errorM" th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cityName">City:</label>
+                        <div class="row">
+                            <input type="text" class="form-control col-8" id="cityName" th:field="*{cityName}">
+                            <p class="errorM" th:if="${#fields.hasErrors('cityName')}" th:errors="*{cityName}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postCode">Postal Code:</label>
+                        <div class="row">
+                            <input type="text" class="form-control col-8" id="postCode" th:field="*{postCode}">
+                            <p class="errorM" th:if="${#fields.hasErrors('postCode')}" th:errors="*{postCode}"></p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Finish Order</button>
+
+                </form>
+            </div>
+            <div class="col-3 ml-5 mt-5">
+                <a th:href="@{/create}" id="another">Create another pizza</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
